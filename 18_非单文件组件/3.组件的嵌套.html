@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <app></app>
+
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    //定义student组件
+    const student = Vue.extend({
+        template : `
+            <div>
+                <h2>姓名: {{name}}</h2>
+                <h2>年龄: {{age}}</h2>
+                
+                
+                </div>
+        `,
+        name: 'student',
+        data(){
+            return {
+                name:'zhangjunjie',
+                age:28
+            }
+        }
+    })
+
+
+    //创建school组件
+    const school = Vue.extend({
+        template: `
+            <div>
+                <h2>学校：{{name}}</h2>
+                <h2>地址：{{address}}</h2>
+                <student></student>
+                </div>
+        `,
+        name: 'school',
+        data(){
+            return {
+                name: '蚌埠学院',
+                address: "曹山路"
+            }
+        },
+        //注册组件（局部）
+        components:{
+            //要嵌套的组件必须在使用之前定义，不然会报错
+            student
+        }
+    })
+
+
+    //创建hello组件
+    const hello = Vue.extend({
+        template:`
+            <h1>{{msg}}</h1>
+        `,
+        name: 'hello',
+        data(){
+            return {
+                msg : 'hello'
+            }
+        }
+    })
+
+
+    //创建app组件
+    const app = Vue.extend({
+        template: `
+        <div>
+           <hello></hello>
+           <school></school> 
+        </div>
+        `,
+        components: {
+            school,
+            hello
+        }
+    })
+    //创建vm
+    new Vue({
+        template:`
+        <app></app>
+        `,
+        el: "#root",
+        components:{
+            app
+        }
+    })
+
+
+</script>
+</html>

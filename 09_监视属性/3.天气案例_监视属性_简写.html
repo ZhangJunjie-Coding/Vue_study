@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气案例_监视属性_简写</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+        
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h2>今天天气{{info}}</h2>
+        <button @click="changeWether">切换天气</button>
+
+    
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+    /*
+    ES6语法：
+    对象里面的属性的原始写法是:
+        'key':value
+        但可以简写为
+        key:value
+    */
+    const vm = new Vue({
+
+        el: "#root",
+        data:{
+            isHot: true,
+            numbers: {
+                a: 1,
+                b: 1
+            }
+        },
+        computed:{
+            info(){
+                return this.isHot ? '炎热' : '凉爽'
+            }
+        },
+        methods:{
+            changeWether: function(){
+                this.isHot = !this.isHot
+            }
+        
+       },
+       watch: {
+            //正常写法
+            /*
+            isHot:{
+                // immediate:true, //初始化时让handler调用一下
+                // deep: true,     //深度监视
+                // handler什么时候调用？当isHot发生改变时调用
+                handler(newValue,OldValue){
+
+                    console.log("isHot被修改了",newValue,OldValue)
+                }
+            }
+            */
+           //简写
+        //    isHot(newValue,OldValue){
+        //        console.log("isHot被修改了",newValue,OldValue);
+        //    }
+        }
+    })
+    vm.$watch('isHot',function(newVlue,OldValue){
+        console.log("isHot被修改了",newVlue,OldValue);
+    })
+</script>
+</html>

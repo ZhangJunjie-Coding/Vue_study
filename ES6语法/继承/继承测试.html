@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+//        function Father() {
+//         this.color = ['red', 'green'];
+//      }
+//      function Child() {
+//         this.test = 1;
+//      }
+
+//   Child.prototype = new Father();
+
+//   let instance = new Child();
+//      console.log(...instance.color)
+//   console.log(instance)
+
+
+var a,b;
+(function(){
+  function A (arg1,arg2) {
+    this.a = 1;
+    this.b=2; 
+  }
+
+  A.prototype.log = function () {
+    console.log(this.a);
+  }
+  a = new A();
+  b = new A();
+})()
+console.log(a)
+a.constructor.prototype.log2 = function(){
+    console.log('this is log2 ')
+}
+a.log();
+a.log2()
+// 1
+b.log();
+b.log2()
+// 1
+function Test(){
+    this.name = 'zhang'
+}
+Test.prototype.show = function(){
+    console.log("show")
+}
+
+let zhang = new Test();
+console.log(zhang)
+console.log(zhang.__proto__);
+
+   </script> 
+</body>
+</html>

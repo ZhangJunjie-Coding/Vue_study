@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sessionStorage</title>
+</head>
+<body>
+    <!-- 这里的session不是服务器的Session -->
+    <h2>sessionStorage</h2>
+    <button onclick="saveData()">点我保存一个数据</button>
+    <button onclick="readData()">点我读取一个数据</button>
+    <button onclick="deleteData()">点我删除一个数据</button>
+    <button onclick="deleteAllData()">点我清空数据</button>
+
+    <script type="text/javascript">
+        function saveData(){
+            let p ={
+                name:"zhang",
+                age: 18
+            }
+            window.sessionStorage.setItem("name","zhang")
+            window.sessionStorage.setItem("msg",666)
+            sessionStorage.setItem('person',JSON.stringify(p))
+
+        }
+
+
+        function readData(){
+           
+            console.log(window.sessionStorage.getItem('name'))
+            console.log(window.sessionStorage.getItem('msg'))
+
+            const result = sessionStorage.getItem('person')
+
+            //读取一个不存在的值返回null
+            console.log(window.sessionStorage.getItem('msg2'))
+
+
+
+            console.log(JSON.parse(result))
+        }
+
+
+        function deleteData(){
+            window.sessionStorage.removeItem('msg')
+        }
+        function deleteAllData(){
+            window.sessionStorage.clear()
+        }
+        
+    </script>
+</body>
+</html>

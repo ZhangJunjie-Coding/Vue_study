@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>姓名案例_methods语法实现</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <!-- 只要data中的数据发生变化，Vue模板就会重新解析一遍 -->
+        姓:<input type="text" v-model:value="firstName"/>  <br><br>
+        名:<input type="text" v-model:value="lastName"/>   <br><br>
+        全名:<span>{{fullName()}}</span>
+    </div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    new Vue({
+        el: "#root",
+        //只要data中的数据发生变化，Vue模板就会重新解析一遍
+        data: {
+          firstName:"张",
+          lastName: "三"
+        },
+        /*
+        这里如果是普通函数,this指向的就是Vue实例
+        如果是箭头函数，this指向的就是window
+        */
+        methods: {
+           fullName(){
+               return this.firstName+'-'+this.lastName;
+           } 
+        }
+    })
+</script>
+</html>
